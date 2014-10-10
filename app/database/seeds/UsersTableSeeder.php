@@ -25,7 +25,16 @@ class UsersTableSeeder extends Seeder {
                 'confirmation_code' => md5(microtime().Config::get('app.key')),
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
-            )
+            ),
+            array(
+                'username'      => 'cloker19',
+                'email'      => 'cloker19@gmail.com',
+                'password'   => Hash::make('19446901'),
+                'confirmed'   => 1,
+                'confirmation_code' => md5(microtime().Config::get('app.key')),
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
+            ),
         );
 
         DB::table('users')->insert( $users );
