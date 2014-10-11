@@ -108,6 +108,9 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
+        'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
 		
         /* Additional Providers */
         'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
