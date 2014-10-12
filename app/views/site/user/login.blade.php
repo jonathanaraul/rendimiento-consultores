@@ -1,4 +1,4 @@
-@extends('site.layouts.base')
+@extends('site.layouts.users')
 
 {{-- Web site Title --}}
 @section('title')
