@@ -291,7 +291,7 @@ class UserController extends BaseController {
     {
         Confide::logout();
 
-        return Redirect::to('/');
+        return Redirect::to('user/login');
     }
 
     /**

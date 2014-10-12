@@ -180,7 +180,8 @@ Page Header
 .page-header.navbar .page-actions {
   margin: 17px 0 15px 15px;
   padding: 0;
-  float: left;
+  padding-right: 2px;
+  float: right;
 }
 .page-header.navbar .page-actions .btn-group .dropdown-menu {
   margin-top: 5px;

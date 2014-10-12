@@ -103,9 +103,16 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
+Route::get('data/pizza', function(){
+
+    return View::make('site.data.pizza');
+});
+
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', function(){
+    return View::make('site.layouts.base');
+});

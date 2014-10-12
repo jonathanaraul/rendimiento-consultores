@@ -1,15 +1,13 @@
-var Inbox = function () {
+var Resultad = function () {
 
-    var content = $('.inbox-content');
-    var loading = $('.inbox-loading');
+    var content = $('.view-content');
     var listListing = '';
 
     var loadInbox = function (el, name) {
-        var url = 'inbox_inbox.html';
+        var url = 'inbox_inbox';
         var title = $('.inbox-nav > li.' + name + ' a').attr('data-title');
         listListing = name;
 
-        loading.show();
         content.html('');
         toggleButton(el);
 
@@ -50,7 +48,7 @@ var Inbox = function () {
     }
 
     var loadMessage = function (el, name, resetMenu) {
-        var url = 'inbox_view.html';
+        var url = 'inbox_view';
 
         loading.show();
         content.html('');
@@ -88,7 +86,7 @@ var Inbox = function () {
 
     var initWysihtml5 = function () {
         $('.inbox-wysihtml5').wysihtml5({
-            "stylesheets": ["../../assets/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css"]
+            "stylesheets": ['../../public/assets-template/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css']
         });
     }
 
@@ -97,14 +95,14 @@ var Inbox = function () {
         $('#fileupload').fileupload({
             // Uncomment the following to send cross-domain cookies:
             //xhrFields: {withCredentials: true},
-            url: '../../assets/global/plugins/jquery-file-upload/server/php/',
+            url: '../../public/assets-template/global/plugins/jquery-file-upload/server/php/index.php',
             autoUpload: true
         });
 
         // Upload server status check for browsers with CORS support:
         if ($.support.cors) {
             $.ajax({
-                url: '../../assets/global/plugins/jquery-file-upload/server/php/',
+                url: '../../public/assets-template/global/plugins/jquery-file-upload/server/php/index.php',
                 type: 'HEAD'
             }).fail(function () {
                 $('<span class="alert alert-error"/>')
@@ -116,7 +114,7 @@ var Inbox = function () {
     }
 
     var loadCompose = function (el) {
-        var url = 'inbox_compose.html';
+        var url = 'inbox_compose';
 
         loading.show();
         content.html('');
@@ -154,7 +152,7 @@ var Inbox = function () {
     }
 
     var loadReply = function (el) {
-        var url = 'inbox_reply.html';
+        var url = 'inbox_reply';
 
         loading.show();
         content.html('');

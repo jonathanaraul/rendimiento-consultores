@@ -241,9 +241,7 @@ var ComponentsDropdowns = function () {
 
     var handleMultiSelect = function () {
         $('#my_multi_select1').multiSelect();
-        $('#my_multi_select2').multiSelect({
-            selectableOptgroup: true
-        });
+        $('#my_multi_select2').multiSelect();
     }
 
     return {
