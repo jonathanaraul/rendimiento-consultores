@@ -1,0 +1,35 @@
+Para importar el sql banco_de_dados.sql deben hacerse cambios en la configuracion
+del servidor para saltar el limite por defecto de subida de archivos que es de 2 megas
+aprox.
+
+Instrucciones:
+
+1- Abrir el archivo php.ini, que en xampp se encuentra en C:\xampp\php
+
+                   ;;;;;;;;;;;;;;;;
+2- Ir a la seccion ; File Uploads ;
+		   ;;;;;;;;;;;;;;;;
+
+3- Editar la linea upload_max_filesize= donde debera indicarse el peso maximo permitido
+para la subida de archivos
+
+                   ;;;;;;;;;;;;;;;;;;;
+4- Ir a la seccion ; Resource Limits ;
+                   ;;;;;;;;;;;;;;;;;;;
+
+5- Indicar en las lineas max_execution_time= y max_input_time= en segundos el tiempo
+maximo de ejecucion permitido para cada script.
+
+Es posible que aun no se puedan subir grandes archivos, por lo que sera necesario 
+realizar cambios adicionales;
+
+6- Ingresar a C:\xampp\phpMyAdmin\config.inc.php y añadir al final del archivo pero
+antes del */
+
+?> lo siguiente, $cfg['ExecTimeLimit'] = 6000;
+
+7- Ingresar a C:\xampp\mysql\bin\my.ini y editar la linea max_allowed_packet e ingresar
+el peso maximo permitido por paquete.
+
+No olvides reiniciar el modulo apache y mysql XD
+
