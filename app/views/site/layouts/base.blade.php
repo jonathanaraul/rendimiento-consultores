@@ -734,24 +734,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <div class="form-body">
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-9">
-                                                                                                <select multiple="multiple" class="multi-select" id="my_multi_select1" name="my_multi_select1[]">
-                                                                                                    <option>Dallas Cowboys</option>
-                                                                                                    <option>New York Giants</option>
-                                                                                                    <option selected>Philadelphia Eagles</option>
-                                                                                                    <option selected>Washington Redskins</option>
-                                                                                                    <option>Chicago Bears</option>
-                                                                                                    <option>Detroit Lions</option>
-                                                                                                    <option>Green Bay Packers</option>
-                                                                                                    <option>Minnesota Vikings</option>
-                                                                                                    <option selected>Atlanta Falcons</option>
-                                                                                                    <option>Carolina Panthers</option>
-                                                                                                    <option>New Orleans Saints</option>
-                                                                                                    <option>Tampa Bay Buccaneers</option>
-                                                                                                    <option>Arizona Cardinals</option>
-                                                                                                    <option>St. Louis Rams</option>
-                                                                                                    <option>San Francisco 49ers</option>
-                                                                                                    <option>Seattle Seahawks</option>
-                                                                                                </select>
+                                                                                            {{Form::select('my_multi_select1[]', $consultores, null, array('multiple', 'class' => "multi-select", 'id' => 'my_multi_select1'))}}
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

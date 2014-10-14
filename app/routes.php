@@ -112,7 +112,5 @@ Route::get('data/pizza', function(){
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
-# Index Page - Last route, no matches
-Route::get('/', function(){
-    return View::make('site.layouts.base');
-});
+# Carga de inicio
+Route::get('/', 'ConsultoresController@getConsultors');
