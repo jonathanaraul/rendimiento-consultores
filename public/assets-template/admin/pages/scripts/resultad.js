@@ -1,327 +1,57 @@
-var Resultad = function () {
-
-    var content = $('.view-content');
-    var listListing = '';
-
-    var loadInbox = function (el, name) {
-        var url = 'inbox_inbox';
-        var title = $('.inbox-nav > li.' + name + ' a').attr('data-title');
-        listListing = name;
-
-        content.html('');
-        toggleButton(el);
-
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: url,
-            dataType: "html",
-            success: function(res) 
-            {
-                toggleButton(el);
-
-                $('.inbox-nav > li.active').removeClass('active');
-                $('.inbox-nav > li.' + name).addClass('active');
-                $('.inbox-header > h1').text(title);
-
-                loading.hide();
-                content.html(res);
-                Layout.fixContentHeight();
-                Metronic.initUniform();
-            },
-            error: function(xhr, ajaxOptions, thrownError)
-            {
-                toggleButton(el);
-            },
-            async: false
-        });
-
-        // handle group checkbox:
-        jQuery('body').on('change', '.mail-group-checkbox', function () {
-            var set = jQuery('.mail-checkbox');
-            var checked = jQuery(this).is(":checked");
-            jQuery(set).each(function () {
-                $(this).attr("checked", checked);
-            });
-            jQuery.uniform.update(set);
-        });
+function crearAjax()
+{
+    var xmlhttp=false;
+     try
+    {
+      xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
     }
+    catch (e)
+    {
+        try
+        {
+               xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+        catch (E)
+        {
+               xmlhttp = false;
+          }
+     }
 
-    var loadMessage = function (el, name, resetMenu) {
-        var url = 'inbox_view';
-
-        loading.show();
-        content.html('');
-        toggleButton(el);
-
-        var message_id = el.parent('tr').attr("data-messageid");  
-        
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: url,
-            dataType: "html",
-            data: {'message_id': message_id},
-            success: function(res) 
-            {
-                toggleButton(el);
-
-                if (resetMenu) {
-                    $('.inbox-nav > li.active').removeClass('active');
-                }
-                $('.inbox-header > h1').text('View Message');
-
-                loading.hide();
-                content.html(res);
-                Layout.fixContentHeight();
-                Metronic.initUniform();
-            },
-            error: function(xhr, ajaxOptions, thrownError)
-            {
-                toggleButton(el);
-            },
-            async: false
-        });
+    if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+    {
+          xmlhttp = new XMLHttpRequest();
     }
+    return xmlhttp;
+}
 
-    var initWysihtml5 = function () {
-        $('.inbox-wysihtml5').wysihtml5({
-            "stylesheets": ['../../public/assets-template/global/plugins/bootstrap-wysihtml5/wysiwyg-color.css']
-        });
-    }
+function loadRelatorio()
+{
+    // creamos un nuevo objeto ajax
+    ajax=crearAjax();
 
-    var initFileupload = function () {
-
-        $('#fileupload').fileupload({
-            // Uncomment the following to send cross-domain cookies:
-            //xhrFields: {withCredentials: true},
-            url: '../../public/assets-template/global/plugins/jquery-file-upload/server/php/index.php',
-            autoUpload: true
-        });
-
-        // Upload server status check for browsers with CORS support:
-        if ($.support.cors) {
-            $.ajax({
-                url: '../../public/assets-template/global/plugins/jquery-file-upload/server/php/index.php',
-                type: 'HEAD'
-            }).fail(function () {
-                $('<span class="alert alert-error"/>')
-                    .text('Upload server currently unavailable - ' +
-                    new Date())
-                    .appendTo('#fileupload');
-            });
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status==200){
+            document.getElementById('view-content').innerHTML=ajax.responseText;
         }
     }
 
-    var loadCompose = function (el) {
-        var url = 'inbox_compose';
+    ajax.open("GET", "relatorio", true);
+    ajax.send();
+   
+}
 
-        loading.show();
-        content.html('');
-        toggleButton(el);
+function loadPizza()
+{
+    // creamos un nuevo objeto ajax
+    ajax=crearAjax();
 
-        // load the form via ajax
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: url,
-            dataType: "html",
-            success: function(res) 
-            {
-                toggleButton(el);
-
-                $('.inbox-nav > li.active').removeClass('active');
-                $('.inbox-header > h1').text('Compose');
-
-                loading.hide();
-                content.html(res);
-
-                initFileupload();
-                initWysihtml5();
-
-                $('.inbox-wysihtml5').focus();
-                Layout.fixContentHeight();
-                Metronic.initUniform();
-            },
-            error: function(xhr, ajaxOptions, thrownError)
-            {
-                toggleButton(el);
-            },
-            async: false
-        });
-    }
-
-    var loadReply = function (el) {
-        var url = 'inbox_reply';
-
-        loading.show();
-        content.html('');
-        toggleButton(el);
-
-        // load the form via ajax
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: url,
-            dataType: "html",
-            success: function(res) 
-            {
-                toggleButton(el);
-
-                $('.inbox-nav > li.active').removeClass('active');
-                $('.inbox-header > h1').text('Reply');
-
-                loading.hide();
-                content.html(res);
-                $('[name="message"]').val($('#reply_email_content_body').html());
-
-                handleCCInput(); // init "CC" input field
-
-                initFileupload();
-                initWysihtml5();
-                Layout.fixContentHeight();
-                Metronic.initUniform();
-            },
-            error: function(xhr, ajaxOptions, thrownError)
-            {
-                toggleButton(el);
-            },
-            async: false
-        });
-    }
-
-    var loadSearchResults = function (el) {
-        var url = 'inbox_search_result.html';
-
-        loading.show();
-        content.html('');
-        toggleButton(el);
-
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: url,
-            dataType: "html",
-            success: function(res) 
-            {
-                toggleButton(el);
-
-                $('.inbox-nav > li.active').removeClass('active');
-                $('.inbox-header > h1').text('Search');
-
-                loading.hide();
-                content.html(res);
-                Layout.fixContentHeight();
-                Metronic.initUniform();
-            },
-            error: function(xhr, ajaxOptions, thrownError)
-            {
-                toggleButton(el);
-            },
-            async: false
-        });
-    }
-
-    var handleCCInput = function () {
-        var the = $('.inbox-compose .mail-to .inbox-cc');
-        var input = $('.inbox-compose .input-cc');
-        the.hide();
-        input.show();
-        $('.close', input).click(function () {
-            input.hide();
-            the.show();
-        });
-    }
-
-    var handleBCCInput = function () {
-
-        var the = $('.inbox-compose .mail-to .inbox-bcc');
-        var input = $('.inbox-compose .input-bcc');
-        the.hide();
-        input.show();
-        $('.close', input).click(function () {
-            input.hide();
-            the.show();
-        });
-    }
-
-    var toggleButton = function(el) {
-        if (typeof el == 'undefined') {
-            return;
-        }
-        if (el.attr("disabled")) {
-            el.attr("disabled", false);
-        } else {
-            el.attr("disabled", true);
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status==200){
+            document.getElementById('view-content').innerHTML=ajax.responseText;
         }
     }
 
-    return {
-        //main function to initiate the module
-        init: function () {
-
-            // handle compose btn click
-            $('.inbox').on('click', '.compose-btn a', function () {
-                loadCompose($(this));
-            });
-
-            // handle discard btn
-            $('.inbox').on('click', '.inbox-discard-btn', function(e) {
-                e.preventDefault();
-                loadInbox($(this), listListing);
-            });
-
-            // handle reply and forward button click
-            $('.inbox').on('click', '.reply-btn', function () {
-                loadReply($(this));
-            });
-
-            // handle view message
-            $('.inbox-content').on('click', '.view-message', function () {
-                loadMessage($(this));
-            });
-
-            // handle inbox listing
-            $('.inbox-nav > li.inbox > a').click(function () {
-                loadInbox($(this), 'inbox');
-            });
-
-            // handle sent listing
-            $('.inbox-nav > li.sent > a').click(function () {
-                loadInbox($(this), 'sent');
-            });
-
-            // handle draft listing
-            $('.inbox-nav > li.draft > a').click(function () {
-                loadInbox($(this), 'draft');
-            });
-
-            // handle trash listing
-            $('.inbox-nav > li.trash > a').click(function () {
-                loadInbox($(this), 'trash');
-            });
-
-            //handle compose/reply cc input toggle
-            $('.inbox-content').on('click', '.mail-to .inbox-cc', function () {
-                handleCCInput();
-            });
-
-            //handle compose/reply bcc input toggle
-            $('.inbox-content').on('click', '.mail-to .inbox-bcc', function () {
-                handleBCCInput();
-            });
-
-            //handle loading content based on URL parameter
-            if (Metronic.getURLParameter("a") === "view") {
-                loadMessage();
-            } else if (Metronic.getURLParameter("a") === "compose") {
-                loadCompose();
-            } else {
-               $('.inbox-nav > li.inbox > a').click();
-            }
-
-        }
-
-    };
-
-}();
+    ajax.open("GET", "pizza", true);
+    ajax.send();
+   
+}

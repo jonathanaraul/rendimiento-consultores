@@ -103,10 +103,15 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
-Route::get('data/pizza', function(){
+Route::get('pizza', function(){
 
     return View::make('site.data.pizza');
 });
+
+# Ruta hacia vista relatorio
+Route::get('relatorio', 'CargaController@cargarRelatorio');
+# Ruta hacia vista pizza
+Route::get('pizza', 'CargaController@cargarPizza');
 
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');

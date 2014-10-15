@@ -717,9 +717,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             <div class="form-actions">
                                                                                 <div class="row">
                                                                                     <div class="col-md-offset-3">
-                                                                                        {{ Form::button('Relatório', array('class' => 'btn blue')) }}
+                                                                                        
+                                                                                        {{ Form::button('Relatório', array('class' => 'btn blue', 'onclick' => 'loadRelatorio()')) }}
                                                                                         {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue')) }}
-                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue')) }}
+                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue', 'onclick' => 'loadPizza()')) }}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>                                                                             
@@ -734,7 +735,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <div class="form-body">
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-9">
-                                                                                            {{Form::select('my_multi_select1[]', $consultores, null, array('multiple', 'class' => "multi-select", 'id' => 'my_multi_select1'))}}
+                                                                                            <select name="my_multi_select1[]" id="my_multi_select1" class="multi-select" multiple>
+                                                                                                <option value="0">Selecao Consultores</option>
+                                                                                                @foreach ($consultores as $row)
+                                                                                                    <option value"{{$row->co_usuario}}">{{$row->no_usuario}}</option>
+                                                                                                @endforeach
+                                                                                            </select>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -786,7 +792,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                 <div class="form-actions">
                                                                                     <div class="row">
                                                                                         <div class="col-md-offset-3">
-                                                                                            {{ Form::button('Relatório', array('class' => 'btn blue')) }}
+                                                                                            {{ Form::button('Relatório', array('class' => 'btn blue', 'id'=>'boton_cargar')) }}
                                                                                             {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue')) }}
                                                                                             {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue')) }}
                                                                                         </div>
@@ -843,8 +849,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <!-- End: life time stats -->
                 <!-- BEGIN PAGE HEADER AND PAGE CONTENT-->
-                        <div class="view-content">
-                        </div>
+                <div id="view-content"></div>
                 <!-- END PAGE HEADER AND PAGE CONTENT-->
             </div>
         </div>
@@ -865,12 +870,15 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
     <!-- END FOOTER -->
 </div>
+
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="{{asset('assets-template/global/plugins/respond.min.js')}}"></script>
 <script src="{{asset('assets-template/global/plugins/excanvas.min.js')}}"></script> 
 <![endif]-->
+{{HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript')}}
+{{HTML::script('assets-template/admin/pages/scripts/resultad.js')}}
 <script src="{{asset('assets-template/global/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets-template/global/plugins/jquery-migrate-1.2.1.min.js')}}" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
@@ -945,7 +953,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="../../assets/global/plugins/jquery-file-upload/js/cors/jquery.xdr-transport.js"></script>
     <![endif]-->    
 <!-- END:File Upload Plugin JS files-->
-<script src="{{asset('assets-template/admin/pages/scripts/resultad.js')}}" type="text/javascript"></script>
+<!--<script src="{{asset('assets-template/admin/pages/scripts/resultad.js')}}" type="text/javascript"></script>-->
 <script src="{{asset('assets-template/admin/pages/scripts/components-pickers.js')}}"></script>
 <script src="{{asset('assets-template/admin/pages/scripts/components-dropdowns.js')}}"></script>
 <script src="{{asset('assets-template/admin/pages/scripts/charts.js')}}"></script>
@@ -954,7 +962,6 @@ jQuery(document).ready(function() {
 Metronic.init(); // init metronic core components
 Layout.init(); // init current layout
 Demo.init(); // init demo features
-Resultad.init();
 ComponentsDropdowns.init();
 EcommerceOrdersView.init();
 ComponentsPickers.init();
