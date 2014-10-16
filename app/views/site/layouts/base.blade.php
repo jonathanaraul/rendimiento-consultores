@@ -719,8 +719,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <div class="col-md-offset-3">
                                                                                         
                                                                                         {{ Form::button('Relatório', array('class' => 'btn blue', 'onclick' => 'loadRelatorio()')) }}
-                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue', 'onclick' => 'loadGrafico()')) }}
-                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue', 'onclick' => 'loadPizza()')) }}
+                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue', 'id' => 'grafico')) }}
+                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue', 'id' => 'pizza')) }}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>                                                                             
@@ -851,7 +851,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN PAGE HEADER AND PAGE CONTENT-->
 
                 <div id="view-content">
-                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
                 </div>
                 <!-- END PAGE HEADER AND PAGE CONTENT-->
             </div>
@@ -969,9 +969,11 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--SCRIPT QUE CARGA LAS VISTAS EN DIV VIEW-CONTENT-->
 {{HTML::script('assets-template/admin/pages/scripts/resultad.js')}}
 <!--Fin-->
-<!--SCRIPT QUE CARGA LA GRAFICA EN CONTENEDOR CON Id="container" DENTRO DE DIV "view-content"-->
-{{HTML::script('assets-template/admin/pages/scripts/carga.js')}}
+<!--SCRIPT QUE CARGA LA GRAFICA EN CONTENEDOR DENTRO DE DIV "view-content"-->
+{{HTML::script('assets-template/admin/pages/scripts/cargaGrafica.js')}}
+{{HTML::script('assets-template/admin/pages/scripts/cargaPizza.js')}}
 <!--FIN DEL SCRIPT-->
+
 <script>
 jQuery(document).ready(function() {    
 Metronic.init(); // init metronic core components

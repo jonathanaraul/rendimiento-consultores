@@ -1,5 +1,14 @@
-$(function() {
-    $('#container').highcharts({
+$( "#grafico" ).click(function() {
+     
+     $( '#view-content' ).css({
+        "min-width" : "310px",
+        "height" : "400px",
+        "margin" : "0 auto",
+        "max-width" : "1000px"
+    });
+
+    $(function() {
+        $('#view-content').highcharts({
         title: {
             text: 'Desempeño'
         },
@@ -28,5 +37,7 @@ $(function() {
                 fillColor: 'white'
             }
         }]
+        });
     });
 });
+
