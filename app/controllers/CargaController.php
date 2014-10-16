@@ -24,4 +24,16 @@ class CargaController extends BaseController {
 		return View::make('site.data.pizza');
 	}
 
+		/**
+	 * Carga la vista Grafica
+	 *
+	 *
+	 * @return View Grafica
+	 */
+	public function cargarGrafico()
+	{
+		
+		return View::make('site.data.grafico');
+	}
+
 }

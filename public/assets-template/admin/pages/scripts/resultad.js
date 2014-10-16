@@ -55,3 +55,19 @@ function loadPizza()
     ajax.send();
    
 }
+
+function loadGrafico()
+{
+    // creamos un nuevo objeto ajax
+    ajax=crearAjax();
+
+    ajax.onreadystatechange=function(){
+        if(ajax.readyState==4 && ajax.status==200){
+            document.getElementById('view-content').innerHTML=ajax.responseText;
+        }
+    }
+
+    ajax.open("GET", "grafico", true);
+    ajax.send();
+   
+}

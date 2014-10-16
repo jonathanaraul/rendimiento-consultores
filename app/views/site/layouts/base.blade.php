@@ -719,7 +719,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <div class="col-md-offset-3">
                                                                                         
                                                                                         {{ Form::button('Relatório', array('class' => 'btn blue', 'onclick' => 'loadRelatorio()')) }}
-                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue')) }}
+                                                                                        {{ Form::button('<i class="icon-bar-chart"></i> Gráfico', array('class' => 'btn blue', 'onclick' => 'loadGrafico()')) }}
                                                                                         {{ Form::button('<i class="icon-bar-chart"></i> Pizza', array('class' => 'btn blue', 'onclick' => 'loadPizza()')) }}
                                                                                     </div>
                                                                                 </div>
@@ -849,7 +849,10 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <!-- End: life time stats -->
                 <!-- BEGIN PAGE HEADER AND PAGE CONTENT-->
-                <div id="view-content"></div>
+
+                <div id="view-content">
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
                 <!-- END PAGE HEADER AND PAGE CONTENT-->
             </div>
         </div>
@@ -877,8 +880,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{asset('assets-template/global/plugins/respond.min.js')}}"></script>
 <script src="{{asset('assets-template/global/plugins/excanvas.min.js')}}"></script> 
 <![endif]-->
+
 {{HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript')}}
-{{HTML::script('assets-template/admin/pages/scripts/resultad.js')}}
+
 <script src="{{asset('assets-template/global/plugins/jquery-1.11.0.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets-template/global/plugins/jquery-migrate-1.2.1.min.js')}}" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
@@ -901,7 +905,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <script type="text/javascript" src="{{asset('assets-template/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-template/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets-template/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="{{asset('assets-template/admin/pages/scripts/form-samples.js')}}"></script>
+<!--<script src="{{asset('assets-template/admin/pages/scripts/form-samples.js')}}"></script>
+<script src="{{asset('assets-template/admin/pages/scripts/highcharts.js')}}"></script>-->
 <script src="{{asset('assets-template/global/scripts/datatable.js')}}"></script>
 <script src="{{asset('assets-template/admin/pages/scripts/ecommerce-orders-view.js')}}"></script>
 <script src="{{asset('assets-template/global/plugins/fancybox/source/jquery.fancybox.pack.js')}}" type="text/javascript"></script>
@@ -957,6 +962,16 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="{{asset('assets-template/admin/pages/scripts/components-pickers.js')}}"></script>
 <script src="{{asset('assets-template/admin/pages/scripts/components-dropdowns.js')}}"></script>
 <script src="{{asset('assets-template/admin/pages/scripts/charts.js')}}"></script>
+<!--INICIO DE JS QUE INTERVIENEN EN LA GRAFICA-->
+{{HTML::script('assets-template/admin/pages/scripts/highcharts.js')}}
+{{HTML::script('assets-template/admin/pages/scripts/exporting.js')}}
+<!--FIN DE JS QUE INTERVIENEN EN LA GRAFICA-->
+<!--SCRIPT QUE CARGA LAS VISTAS EN DIV VIEW-CONTENT-->
+{{HTML::script('assets-template/admin/pages/scripts/resultad.js')}}
+<!--Fin-->
+<!--SCRIPT QUE CARGA LA GRAFICA EN CONTENEDOR CON Id="container" DENTRO DE DIV "view-content"-->
+{{HTML::script('assets-template/admin/pages/scripts/carga.js')}}
+<!--FIN DEL SCRIPT-->
 <script>
 jQuery(document).ready(function() {    
 Metronic.init(); // init metronic core components

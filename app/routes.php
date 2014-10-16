@@ -113,6 +113,8 @@ Route::get('relatorio', 'CargaController@cargarRelatorio');
 # Ruta hacia vista pizza
 Route::get('pizza', 'CargaController@cargarPizza');
 
+Route::get('grafico', 'CargaController@cargarGrafico');
+
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
