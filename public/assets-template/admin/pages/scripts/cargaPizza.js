@@ -4,21 +4,10 @@ $( "#pizza" ).click(function() {
         "min-width" : "310px",
         "height" : "400px",
         "margin" : "0 auto",
-        "max-width" : "600px"
+        "max-width" : "1000px"
     });
 
     $(function () {
-
-    // Radialize the colors
-    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-        return {
-            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-            stops: [
-                [0, color],
-                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-            ]
-        };
-    });
 
     // Build the chart
     $('#view-content').highcharts({
@@ -28,7 +17,7 @@ $( "#pizza" ).click(function() {
             plotShadow: false
         },
         title: {
-            text: 'Browser market shares at a specific website, 2014'
+            text: 'Participacao na Receita'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -49,19 +38,19 @@ $( "#pizza" ).click(function() {
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Porcentaje',
             data: [
-                ['Firefox',   45.0],
-                ['IE',       26.8],
+                ['Ana',   45.0],
+                ['Paul',       26.8],
                 {
-                    name: 'Chrome',
+                    name: 'Peter',
                     y: 12.8,
                     sliced: true,
                     selected: true
                 },
-                ['Safari',    8.5],
-                ['Opera',     6.2],
-                ['Others',   0.7]
+                ['Mario',    8.5],
+                ['Mary',     6.2],
+                ['Jhon',   0.7]
             ]
         }]
     });

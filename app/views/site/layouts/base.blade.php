@@ -850,9 +850,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- End: life time stats -->
                 <!-- BEGIN PAGE HEADER AND PAGE CONTENT-->
 
-                <div id="view-content">
-
-                </div>
+                <div id="view-content"></div>
                 <!-- END PAGE HEADER AND PAGE CONTENT-->
             </div>
         </div>

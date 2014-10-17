@@ -10,7 +10,7 @@ $( "#grafico" ).click(function() {
     $(function() {
         $('#view-content').highcharts({
         title: {
-            text: 'Desempeño'
+            text: 'Performance Comercial'
         },
         xAxis: {
             categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo']
