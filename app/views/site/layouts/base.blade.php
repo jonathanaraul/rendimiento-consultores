@@ -694,7 +694,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <div class="portlet-body">
                                                             <div class="table-responsive">
                                                                 <!-- BEGIN FORM-->
-                                                                {{ Form::open(array('class' => 'form-horizontal form-row-seperated', 'url' => 'ajax')) }}
+                                                                 {{ Form::open(['class' => 'form-horizontal form-row-seperated']) }}
                                                                 <table class="table table-bordered">
                                                                     <tr>
                                                                         <td width="20%">
@@ -735,12 +735,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <div class="form-body">
                                                                                         <div class="form-group">
                                                                                             <div class="col-md-9">
+                                                                                             
                                                                                             <select name="my_multi_select1[]" id="my_multi_select1" class="multi-select" multiple>
+                                                                                              
                                                                                                 <option value="0">Selecao Consultores</option>
-                                                                                                @foreach ($consultores as $row)
-                                                                                                    <option value"{{$row->co_usuario}}">{{$row->no_usuario}}</option>
-                                                                                                @endforeach
+                                                                                                @foreach ($consultors as $row) 
+                                                                                 <option value="{{$row->co_usuario}}">{{$row->Consultor->no_usuario}}</option>
+                                                                                             @endforeach   
                                                                                             </select>
+                                                                                            
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

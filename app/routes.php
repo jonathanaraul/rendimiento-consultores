@@ -108,6 +108,9 @@ Route::get('pizza', function(){
     return View::make('site.data.pizza');
 });
 
+//Route Consultors
+ Route::get('consultors', array('as' => 'consultors.relatorio', 'uses' => 'ConsultorsController@relatorio'));
+//
 # Ruta hacia vista relatorio
 Route::get('relatorio', 'CargaController@cargarRelatorio');
 # Ruta hacia vista pizza
@@ -120,4 +123,4 @@ Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
 # Carga de inicio
-Route::get('/', 'ConsultoresController@getConsultors');
+Route::get('/', array('as' => 'consultor', 'uses' => 'ConsultorsController@getConsultors'));
