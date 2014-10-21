@@ -15,7 +15,7 @@ class ConsultorsController extends BaseController {
 									  ->where('co_sistema', '=', 1)
 									  ->whereBetween('co_tipo_usuario', array(0, 2))->get();
 
-		return View::make('site.layouts.base')->with('consultors',$consultors);
+		return View::make('site.layouts.index')->with('consultors',$consultors);
 	}
 	
 	//~public function getConsultors()

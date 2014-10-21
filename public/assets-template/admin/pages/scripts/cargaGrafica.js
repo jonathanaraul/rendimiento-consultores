@@ -26,10 +26,26 @@ $( "#grafico" ).click(function() {
         }, {
             type: 'column',
             name: 'Joe',
-            data: [4, 3, 3, 9, 0]
+            data: [4, 3, 3, 9, 20]
         }, {
+            type: 'column',
+            name: 'Aaron',
+            data: [2, 3, 5, 7, 6]
+        }, {
+            type: 'column',
+            name: 'Morgan',
+            data: [2, 3, 5, 7, 6]
+        },  {
+            type: 'column',
+            name: 'Peter',
+            data: [2, 3, 5, 7, 6]
+        }, {
+            type: 'column',
+            name: 'Mary',
+            data: [2, 3, 5, 7, 6]
+        },  {
             type: 'spline',
-            name: 'Average',
+            name: 'Media',
             data: [10, 2.67, 3, 6.33, 3.33],
             marker: {
                 lineWidth: 2,
