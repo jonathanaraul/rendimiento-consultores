@@ -8,24 +8,26 @@ class ConsultorsController extends BaseController {
 	 *
 	 * @return Consultors
 	 */
-	public function getConsultors()
-	{
-
-		$consultors = PermissaoSistema::where('in_ativo','=', 'S')
-									  ->where('co_sistema', '=', 1)
-									  ->whereBetween('co_tipo_usuario', array(0, 2))->get();
-
-		return View::make('site.layouts.index')->with('consultors',$consultors);
-	}
-	
 	//~public function getConsultors()
 	//~{
 //~
-		//~$consultores = Consultor::join('permissao_sistema','permissao_sistema.co_usuario','=','cao_usuario.co_usuario')
-									//~->where('permissao_sistema.in_ativo','=', 'S')
-									//~->get(['cao_usuario.no_usuario']);
+		//~$consultors = PermissaoSistema::where('in_ativo','=', 'S')
+									  //~->where('co_sistema', '=', 1)
+									  //~->whereBetween('co_tipo_usuario', array(0, 2))->get();
 //~
-		//~return View::make('site.layouts.base')->with('consultores',$consultores);
+		//~return View::make('site.layouts.index')->with('consultors',$consultors);
 	//~}
+	
+	public function getConsultors()
+	{
+
+		$consultors = Consultor::join('permissao_sistema','permissao_sistema.co_usuario','=','cao_usuario.co_usuario')
+									->where('permissao_sistema.in_ativo' , '=' , 'S')
+									->where('permissao_sistema.co_sistema' , '=' , 1)
+									->whereBetween('permissao_sistema.co_tipo_usuario', array(0 , 2))
+									->get(['cao_usuario.no_usuario']);
+
+		return View::make('site.layouts.index')->with('consultors',$consultors);
+	}
 
 }

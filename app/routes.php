@@ -124,3 +124,12 @@ Route::post('{postSlug}', 'BlogController@postView');
 
 # Carga de inicio
 Route::get('/', array('as' => 'consultor', 'uses' => 'ConsultorsController@getConsultors'));
+
+#ajax content-event route
+Route::post('graphics', function()
+{
+    if(Request::ajax()){
+        //return Response::json(Input::all());
+        return 'hola ajax';
+    }
+});

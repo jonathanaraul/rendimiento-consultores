@@ -703,10 +703,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                         <td width="50%">
                                                                             <div class="col-md-4">
                                                                                 <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
-                                                                                    {{ Form::text('from', null, array('class' => 'form-control')) }}
+                                                                                    {{ Form::text('from', null, array('class' => 'form-control', 'id'=>'from')) }}
                                                                                     <span class="input-group-addon">
                                                                                     up </span>
-                                                                                    {{ Form::text('to', null, array('class' => 'form-control')) }}
+                                                                                    {{ Form::text('to', null, array('class' => 'form-control', 'id'=>'to')) }}
                                                                                 </div>
                                                                                 <!-- /input-group -->
                                                                                 <span class="help-block">
@@ -738,9 +738,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                              
                                                                                             <select name="my_multi_select1[]" id="my_multi_select1" class="multi-select" multiple>
                                                                                               
-                                                                                                <option value="0">Selecao Consultores</option>
+                                                                                                <option disabled>Selecao Consultores</option>
                                                                                                 @foreach ($consultors as $row) 
-                                                                                 <option value="{{$row->co_usuario}}">{{$row->Consultor->no_usuario}}</option>
+                                                                                 <option value="{{$row->no_usuario}}">{{$row->no_usuario}}</option>
                                                                                              @endforeach   
                                                                                             </select>
                                                                                             
@@ -971,7 +971,8 @@ License: You must have a valid license purchased only from themeforest(the above
 {{HTML::script('assets-template/admin/pages/scripts/resultad.js')}}
 <!--Fin-->
 <!--SCRIPT QUE CARGA LA GRAFICA EN CONTENEDOR DENTRO DE DIV "view-content"-->
-{{HTML::script('assets-template/admin/pages/scripts/cargaGrafica.js')}}
+{{HTML::script('assets-template/admin/pages/scripts/content-events.js')}}
+<!--{{HTML::script('assets-template/admin/pages/scripts/cargaGrafica.js')}}-->
 {{HTML::script('assets-template/admin/pages/scripts/cargaPizza.js')}}
 <!--FIN DEL SCRIPT-->
 
